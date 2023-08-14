@@ -1,0 +1,58 @@
+version: "3.6"
+
+services:
+  api:
+    image: ghcr.io/nas2020/canon-explorer-api:v0.0.3
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/canon
+      - PORT_NUMBER=8000
+    ports:
+      - 8000:8000
+    depends_on:
+      - mongodb
+    networks:
+      - canon
+
+  mongodb:
+    image: mongo:5.0.8
+    environment:
+      - COMPOSE_HTTP_TIMEOUT=900
+      - DOCKER_CLIENT_TIMEOUT=900
+    entrypoint: mongod --bind_ip "0.0.0.0"
+    networks:
+      - canon
+
+  ingestion:
+    image: ghcr.io/nas2020/canon-ingestion:v0.0.4
+    environment:
+      - PORT=3000
+      - MONGODB_URI=mongodb://mongodb:27017/canon
+      - BOOTNODE_WS_URL=ws://35.182.139.254:8555
+      - NODE2_WS_URL=ws://3.98.144.85:8556
+      - BOOTNODE_URL=http://35.182.139.254:8545
+      - NODE2_URL=http://3.98.144.85:8546
+    depends_on:
+      - mongodb
+    networks:
+      - canon
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./5xx.html:/www/error_pages/5xx.html
+    ports:
+      - ${PORT:-80}:80
+    depends_on:
+      - api
+    networks:
+      - canon
+
+networks:
+  canon:
+    name: canon-net
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.239.0/24

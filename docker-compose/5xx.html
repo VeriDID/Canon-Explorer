@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blockchain Voyager | Exploration in Progress</title>
+    <meta name="description" content="Blockchain Exploration Interface" />
+    <meta http-equiv="refresh" content="10" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0" />
+    <link rel="stylesheet" href="https://use.typekit.net/odh5jwh.css" />
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Usual', 'Arial', sans-serif;
+            font-weight: 400;
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #642b73, #c6426e);
+        }
+        div.exploration-environment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+            width: 100%;
+            height: 100%;
+        }
+        div.icon-left {
+            margin-right: 140px;
+        }
+        div.pulse {
+            animation-name: pulsate;
+            animation-duration: 2s;
+            animation-timing-function: ease-out;
+            animation-iteration-count: infinite;
+            transform-origin: 50% 50%;
+            border-radius: 50%;
+            background: #E94E77; /* fallback for browsers without gradient support */
+            background: radial-gradient(circle, #E94E77, #D179BE);
+            padding: 10px;
+        }
+        @keyframes pulsate {
+            0% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.5; }
+        }
+        div.text-right {
+        }
+        h2 {
+            font-size: 36px;
+            line-height: 44px;
+            font-weight: 600;
+            color: #FFFFFF;
+        }
+        p {
+            font-size: 20px;
+            line-height: 24px;
+            margin: 12px 0 26px;
+            color: #FFD2E8;
+        }
+        a.link {
+            font-size: 12px;
+            line-height: 16px;
+            color: #FFB6C1;
+        }
+    </style>
+</head>
+<body>
+    <div class="exploration-environment">
+        <div class="icon-left">
+            <div class="pulse">
+                <!-- The pulsing circle will be here -->
+            </div>
+        </div>
+        <div class="text-right">
+            <h2>Exploring the Blockchain...</h2>
+            <p>Patience, voyager. We're diving deep!</p>
+            <a class="link" href="https://www.web3labs.com/voyager" target="_blank">
+                Voyager — web3labs.com
+            </a>
+        </div>
+    </div>
+</body>
+</html>
